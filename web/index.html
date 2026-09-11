@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GlobalDocs Solutions — Document Processor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <svg class="brand-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="9" fill="currentColor"/>
+                <path d="M11 13h13a2 2 0 0 1 2 2v13H13a2 2 0 0 1-2-2V13z" fill="#0b1119"/>
+                <path d="M15 19h9M15 23h9M15 27h6" stroke="#2fa8a3" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <div>
+                <h1>GlobalDocs Solutions</h1>
+                <p>Multinational document processing platform</p>
+            </div>
+        </div>
+        <nav class="topnav">
+            <span class="nav-item active">Batch Processor</span>
+            <span class="nav-item">Compliance Rules</span>
+            <span class="nav-item">Reports</span>
+        </nav>
+    </header>
+
+    <main class="layout">
+        <section class="stats-row">
+            <div class="stat-card">
+                <span class="stat-label">Documents in Queue</span>
+                <span class="stat-value" id="statQueue">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Processed</span>
+                <span class="stat-value" id="statProcessed">0</span>
+            </div>
+            <div class="stat-card success">
+                <span class="stat-label">Successful</span>
+                <span class="stat-value" id="statSuccess">0</span>
+            </div>
+            <div class="stat-card fail">
+                <span class="stat-label">Failed</span>
+                <span class="stat-value" id="statFailed">0</span>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <aside class="form-panel">
+                <h2 class="panel-title">Add Document to Batch</h2>
+
+                <div class="field">
+                    <label for="fileName">File name</label>
+                    <input id="fileName" type="text" placeholder="e.g. invoice_2451.pdf">
+                </div>
+
+                <div class="field">
+                    <label for="documentType">Document type</label>
+                    <select id="documentType">
+                        <option>Electronic Invoice</option>
+                        <option>Legal Contract</option>
+                        <option>Financial Report</option>
+                        <option>Digital Certificate</option>
+                        <option>Tax Declaration</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="format">Format</label>
+                    <select id="format">
+                        <option value="pdf">.pdf</option>
+                        <option value="doc">.doc</option>
+                        <option value="docx">.docx</option>
+                        <option value="md">.md</option>
+                        <option value="csv">.csv</option>
+                        <option value="txt">.txt</option>
+                        <option value="xlsx">.xlsx</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="country">Country</label>
+                    <select id="country">
+                        <option>Colombia</option>
+                        <option>Mexico</option>
+                        <option>Argentina</option>
+                        <option>Chile</option>
+                    </select>
+                </div>
+
+                <button id="addBtn">+ Add to Batch</button>
+            </aside>
+
+            <section class="main-col">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Batch Queue</h2>
+                        <button id="processBtn" disabled>
+                            <span id="btnLabel">Process Batch</span>
+                            <span id="spinner" class="spinner" hidden></span>
+                        </button>
+                    </div>
+                    <table class="queue-table">
+                        <thead>
+                            <tr><th>File</th><th>Type</th><th>Format</th><th>Country</th><th></th></tr>
+                        </thead>
+                        <tbody id="queueBody"></tbody>
+                    </table>
+                    <p id="emptyQueue" class="empty-msg">No documents added yet.</p>
+                </div>
+
+                <div class="panel" id="resultsPanel" hidden>
+                    <h2 class="panel-title">Processing Results</h2>
+                    <table class="results-table">
+                        <thead>
+                            <tr><th>File</th><th>Type</th><th>Status</th><th>Details</th></tr>
+                        </thead>
+                        <tbody id="resultsBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
